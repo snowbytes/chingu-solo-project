@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    fetch("/v1/api")
+      .then((response) => response.json())
+      .then(({ data }) => setText(data));
+  }, []);
 
   return (
     <>
@@ -16,7 +23,12 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Vite + React + Express</h1>
+      <p>
+        client has been properly integrated with server. Server response is:
+        <br />
+        <code>{text}</code>
+      </p>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}

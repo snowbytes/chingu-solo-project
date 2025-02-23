@@ -1,8 +1,23 @@
+import express from "express";
+import { createServer } from "node:http";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
 // needed to be first
 import "./env.js";
 
-import { createServer } from "node:http";
 import app from "./src/app.js";
+
+// this setup is to allow the server to serve frontend production files
+// see package.json's build script
+if (process.env.NODE_ENV == "production") {
+  const staticDir = fileURLToPath(new URL("../client/dist", import.meta.url));
+
+  app.use(express.static(staticDir));
+  app.get("*", (_, res) => {
+    res.sendFile(path.join(staticDir, "index.html"));
+  });
+}
 
 const PORT = process.env.PORT;
 if (PORT === undefined) {
@@ -12,5 +27,5 @@ if (PORT === undefined) {
 }
 
 createServer(app).listen(PORT, () => {
-  console.log(`server has started listening on port ${PORT}`);
+  console.info(`server has started listening on port ${PORT}`);
 });

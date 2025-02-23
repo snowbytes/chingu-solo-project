@@ -13,7 +13,7 @@ export default [
   prettierConfig,
   {
     name: "own/recommended",
-    files: ["**/*.{js}"],
+    files: ["**/*.js"],
     rules: {
       "jsdoc/require-description": "warn",
       "no-console": ["error", { allow: ["error", "warn", "info"] }],

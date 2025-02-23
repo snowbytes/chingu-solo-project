@@ -2,7 +2,7 @@ import express from "express";
 const app = express();
 
 app.use((req, _, next) => {
-  console.log(`${req.method} initiated on ${req.path}`);
+  console.info(`${req.method} initiated on ${req.path}`);
   next();
 });
 

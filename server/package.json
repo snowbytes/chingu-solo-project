@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "dev": "nodemon server.js",
+    "build": "npm ci && cd ../client && npm ci && npm run build",
     "start": "node server.js",
     "format": "prettier --write .",
     "lint": "eslint ."
