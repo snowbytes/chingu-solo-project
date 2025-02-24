@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import ExerciseDetails from "../components/exerciseDetails.jsx";
+import ExerciseDetails from "../components/ExerciseDetails.jsx";
 import ExerciseForm from "../components/ExerciseForm.jsx";
 import { useExercisesContext } from "../hooks/useExercisesContext.js";
 import exerciseService from "../services/exercise.js";
