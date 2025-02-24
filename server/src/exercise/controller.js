@@ -23,7 +23,7 @@ export async function createExercise(req, res) {
  * @param {import("express").Response} res an express response object
  */
 export async function getAllExercises(_, res) {
-  const exercises = await Exercise.find({});
+  const exercises = await Exercise.find({}).sort({ createdAt: -1 });
   res.status(200).json(exercises);
 }
 
