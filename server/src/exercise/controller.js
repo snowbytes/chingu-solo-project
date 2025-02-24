@@ -51,3 +51,27 @@ export async function getExercise(req, res) {
 
   res.status(200).json(exercise);
 }
+
+export async function updateExercise(req, res) {
+  const { id } = req.params;
+
+  if (!Types.ObjectId.isValid(id)) {
+    return res
+      .status(400)
+      .json({ error: "invalid id - Must be a valid ObjectId" });
+  }
+
+  try {
+    const exercise = await Exercise.findOneAndUpdate({ _id: id }, { ...req.body });
+
+    if (!exercise) {
+      return res
+        .status(404)
+        .json({ error: "the specified id doesn't match any exercise" });
+    }
+
+    res.status(204).send();
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+}
