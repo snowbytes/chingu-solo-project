@@ -1,4 +1,4 @@
-const exerciseService = { create, getAll };
+const exerciseService = { create, getAll, remove };
 export default exerciseService;
 
 const BASE_URL = "/v1/api/exercises";
@@ -13,4 +13,8 @@ function create(exercise) {
     body: JSON.stringify(exercise),
     headers: { "Content-Type": "application/json" },
   });
+}
+
+function remove(id) {
+  return fetch(`${BASE_URL}/${id}`, { method: "DELETE" });
 }

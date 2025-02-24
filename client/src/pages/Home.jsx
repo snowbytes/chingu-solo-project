@@ -18,7 +18,11 @@ export default function Home() {
       <h2>Home</h2>
       <div className="exercises">
         {exercises.map((exercise) => (
-          <ExerciseDetails key={exercise._id} exercise={exercise} />
+          <ExerciseDetails
+            key={exercise._id}
+            exercise={exercise}
+            deleteExercise={exerciseService.remove}
+          />
         ))}
       </div>
 

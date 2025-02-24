@@ -106,5 +106,5 @@ export async function deleteExercise(req, res) {
       .json({ error: "the specified id doesn't match any exercise" });
   }
 
-  res.status(204).send();
+  res.status(200).json(exercise);
 }
