@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ExerciseForm from "../components/ExerciseForm.jsx";
 import exerciseService from "../services/exercise.js";
 
 export default function Home() {
@@ -18,6 +19,8 @@ export default function Home() {
           <ExerciseDetails key={exercise._id} exercise={exercise} />
         ))}
       </div>
+
+      <ExerciseForm createExercise={exerciseService.create} />
     </div>
   );
 }
