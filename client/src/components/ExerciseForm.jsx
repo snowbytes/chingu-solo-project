@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useExercisesContext } from "../hooks/useExercisesContext";
 
 export default function ExerciseForm({ createExercise }) {
   const [name, setName] = useState("");
   const [reps, setReps] = useState("");
   const [load, setLoad] = useState("");
   const [error, setError] = useState(null);
+
+  const { dispatch } = useExercisesContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,16 +17,19 @@ export default function ExerciseForm({ createExercise }) {
       exercise.load = load;
     }
 
-    const response = await createExercise(exercise)
+    const response = await createExercise(exercise);
+    const data = await response.json();
 
     if (!response.ok) {
-      const data = await response.json()
-      return setError(data.error)
-    } 
+      return setError(data.error);
+    }
+
     setName("");
     setReps("");
     setLoad("");
-    setError(null)
+    setError(null);
+
+    dispatch({ type: "CREATE_EXERCISE", payload: data });
   };
 
   return (

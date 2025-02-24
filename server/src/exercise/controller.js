@@ -10,8 +10,8 @@ export async function createExercise(req, res) {
   const { name, reps, load } = req.body;
 
   try {
-    await Exercise.create({ name, reps, load });
-    res.status(201).send();
+    const exercise = await Exercise.create({ name, reps, load });
+    res.status(200).json(exercise);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }

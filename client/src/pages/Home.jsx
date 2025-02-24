@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ExerciseForm from "../components/ExerciseForm.jsx";
+import { useExercisesContext } from "../hooks/useExercisesContext.js";
 import exerciseService from "../services/exercise.js";
 
 export default function Home() {
-  const [exercises, setExercises] = useState([]);
+  const { exercises, dispatch } = useExercisesContext();
 
   useEffect(() => {
     exerciseService.getAll().then((data) => {
-      setExercises(data);
+      dispatch({ type: "SET_EXERCISES", payload: data });
     });
   }, []);
 
