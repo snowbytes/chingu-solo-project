@@ -18,7 +18,7 @@ export default function ExerciseDetails({ exercise, deleteExercise }) {
       <p>Reps: {exercise.reps}</p>
       {exercise.load && <p>Load: {exercise.load}KG</p>}
       <p>Created: {new Date(exercise.createdAt).toLocaleString()}</p>
-      <button onClick={handleClick}>delete</button>
+      <span onClick={handleClick} className="material-symbols-outlined">delete</span>
     </div>
   );
 }

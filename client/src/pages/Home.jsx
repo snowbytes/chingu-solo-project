@@ -15,7 +15,8 @@ export default function Home() {
 
   return (
     <div className="home">
-      <h2>Home</h2>
+      <ExerciseForm createExercise={exerciseService.create} />
+      
       <div className="exercises">
         {exercises.map((exercise) => (
           <ExerciseDetails
@@ -25,8 +26,6 @@ export default function Home() {
           />
         ))}
       </div>
-
-      <ExerciseForm createExercise={exerciseService.create} />
     </div>
   );
 }
